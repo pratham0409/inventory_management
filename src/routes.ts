@@ -1,0 +1,15 @@
+import express from "express";
+import { ProductController } from "./controllers/ProductController";
+import { OrderController } from "./controllers/OrderController";
+import { AuthController } from "./controllers/AuthController";
+import { authMiddleware, isAdmin } from "./middleware/auth";
+const router = express.Router();
+router.post("/login", AuthController.login);
+router.get("/products", ProductController.getAll);
+router.get("/products/:id", ProductController.getById);
+router.post("/products", authMiddleware, isAdmin, ProductController.create);
+router.put("/products/:id", authMiddleware, isAdmin, ProductController.update);
+router.delete("/products/:id", authMiddleware, isAdmin, ProductController.remove);
+router.post("/orders", authMiddleware, OrderController.placeOrder);
+router.get("/orders", authMiddleware, OrderController.getOrdersByCustomer);
+export default router;

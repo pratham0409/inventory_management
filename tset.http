@@ -1,0 +1,50 @@
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com"
+}
+
+GET http://localhost:3000/products
+
+GET http://localhost:3000/products/1
+
+POST http://localhost:3000/products
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "name": "Monitor",
+  "price": 7500,
+  "stock": 5
+}
+
+PUT http://localhost:3000/products/1
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "name": "Gaming Monitor",
+  "price": 8000,
+  "stock": 6
+}
+
+DELETE http://localhost:3000/products/1
+Authorization: Bearer YOUR_TOKEN_HERE
+
+POST http://localhost:3000/orders
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "customerId": 1,
+  "items": [
+    {
+      "productId": 2,
+      "quantity": 2
+    }
+  ]
+}
+
+GET http://localhost:3000/orders?customerId=1
+Authorization: Bearer YOUR_TOKEN_HERE
